@@ -1,5 +1,12 @@
+import React from "react";
+import {render} from "react-dom";
+import {Provider} from "react-redux";
 import store from "./store/index";
-import {addTask} from './actions';
+import App from "./components/App";
 
-window.store = store;
-window.addTask = addTask;
+render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById("react-app")
+);
