@@ -1,7 +1,8 @@
-import {createStore} from "redux";
-import rootReducer from '../reducers/'
+import {createStore, applyMiddleware} from "redux";
 import { status } from '../reducers/task';
 import { tasksReducer } from '../reducers/tasks';
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 
 const initialState = {
     tasks: [
@@ -15,6 +16,6 @@ const initialState = {
     ]
 }
 
-const store = createStore(tasksReducer, initialState);
+const store = createStore(tasksReducer, initialState, applyMiddleware(thunk, logger));
 
 export default store;

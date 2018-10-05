@@ -1,4 +1,4 @@
-import { status, taskReducer } from './task';
+import { taskReducer } from './task';
 import {
     ADD_TASK,
     REMOVE_TASK,
@@ -6,35 +6,42 @@ import {
 import {
     STATUS_TASK,
     EDIT_TEXT,
-    EDIT_TITLE
+    EDIT_TITLE,
 } from '../actions/TaskActions';
 
-export const tasksReducer = (state = initialState, action) => {
+export const tasksReducer = (state = [], action) => {
     switch (action.type) {
         case ADD_TASK:
-            return [
+            return {
                 ...state,
-                action.task
-            ]
-        case REMOVE_TASK:
+                tasks: [...state.tasks, action.task],
+            }
+        case
+        REMOVE_TASK:
+            const array = [...state.tasks]
+            const index = array.indexOf()
             return state.filter(
-                task => task.id !== action.id
+                task => task.id !== action.id,
             )
-        case STATUS_TASK:
+        case
+        STATUS_TASK:
             return state.map(task => {
                 if (task.id === action.id) {
                     taskReducer(task, action)
                 }
             })
-        case EDIT_TITLE:
+        case
+        EDIT_TITLE:
             return state.map(task => {
                 if (task.id === action.id) {
                     taskReducer(task, action)
                 }
             })
-        case EDIT_TEXT:
+        case
+        EDIT_TEXT:
             return state.map(task => {
-                if (task.id === action.id) {}
+                if (task.id === action.id) {
+                }
                 taskReducer(task, action)
             })
         default:

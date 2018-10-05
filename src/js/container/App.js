@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Board from '../components/Board.jsx'
+import Form from '../components/Form.jsx'
 import {
     addTask,
     removeTask
@@ -12,6 +13,9 @@ import {
 } from '../actions/TaskActions';
 
 class App extends Component {
+
+
+
     render() {
         const {
             tasks,
@@ -24,10 +28,12 @@ class App extends Component {
         return (
             <div>
                 <h1>Agile Family Board</h1>
-                <div className="container">
+                <div className="container-fluid">
+                    <Form
+                        addTask={addTask}
+                    />
                     <Board
                         tasks={tasks}
-                        addTask={addTask}
                         removeTask={removeTask}
                         editStatus={editStatus}
                         editTitle={editTitle}
@@ -57,5 +63,5 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
 )(App)
