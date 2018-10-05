@@ -1,16 +1,5 @@
-import constants from "../constants/action-types";
+import {tasksReducer} from './tasks'
 
-const initialState = {
-    tasks: [],
-};
-
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case constants.ADD_TASK:
-            return {...state, tasks: [...state.tasks, action.payload]};
-        default:
-            return state;
-    }
-};
+const rootReducer = tasksReducer
 
 export default rootReducer;
