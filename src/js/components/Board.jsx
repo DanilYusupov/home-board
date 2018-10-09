@@ -5,21 +5,13 @@ import Task from './Task.jsx'
 class Board extends React.Component {
 
     renderTemplate = status => {
-        const {
-            tasks,
-            removeTask,
-            editStatus,
-            editTitle,
-            editText,
-        } = this.props
-        const newArray = tasks.slice().map(task =>
+        const {tasks} = this.props
+        const newArray = tasks.slice().filter(
+            task => task.status === status
+        ).map(task =>
             <Task
                 key={task.id}
                 task={task}
-                removeTask={removeTask}
-                editStatus={editStatus}
-                editTitle={editTitle}
-                editText={editText}
             />
         )
         return (
@@ -35,15 +27,15 @@ class Board extends React.Component {
             <div className="row">
                 <div className="col">
                     <h1>TODO</h1>
-                    {this.renderTemplate(status.TODO)}
+                    {this.renderTemplate('TODO')}
                 </div>
                 <div className="col">
                     <h1>IN PROGRESS</h1>
-                    {this.renderTemplate(status.IN_PROGRESS)}
+                    {this.renderTemplate('IN_PROGRESS')}
                 </div>
                 <div className="col">
                     <h1>DONE</h1>
-                    {this.renderTemplate(status.DONE)}
+                    {this.renderTemplate('DONE')}
                 </div>
             </div>
         )
