@@ -18,17 +18,16 @@ const initialState = [
 ]
 
 const tasksReducer = (state = initialState, action) => {
-    console.log('Preparing for switch-case with action', action)
     switch (action.type) {
         case ADD_TASK:
-            console.log('Adding task with action', action)
             return [
                 ...state,
                 action.task,
             ]
         case EDIT_STATUS:
-            console.log('Editing status', action)
             return state.map(task => task.id === action.id ? {...task, status: action.status} : task)
+        case REMOVE_TASK:
+            return state.filter(task => task.id !== action.id)
         default:
             console.log('Get into default case', action)
             return state
