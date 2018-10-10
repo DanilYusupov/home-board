@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Board from '../components/Board.jsx'
 import Form from '../components/Form.jsx'
-import {addTask} from '../actions/TasksActions'
+import { addTask, editStatus } from '../actions/TasksActions'
 
 class App extends Component {
-
-
 
     render() {
         const {
             tasks,
-            addTask
+            addTask,
+            editStatus
         } = this.props
         return (
             <div>
@@ -22,6 +21,7 @@ class App extends Component {
                     />
                     <Board
                         tasks={tasks}
+                        editStatus={editStatus}
                     />
                 </div>
             </div>
@@ -31,17 +31,18 @@ class App extends Component {
 
 const mapStateToProps = store => {
     return {
-        tasks: store.tasks,
+        tasks: store,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         addTask: (title, text, assignee) => dispatch(addTask(title, text, assignee)),
+        editStatus: (id, status) => dispatch(editStatus(id, status)),
     }
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(App)

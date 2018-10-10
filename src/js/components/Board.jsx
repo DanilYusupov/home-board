@@ -5,13 +5,14 @@ import Task from './Task.jsx'
 class Board extends React.Component {
 
     renderTemplate = status => {
-        const {tasks} = this.props
+        const {tasks, editStatus} = this.props
         const newArray = tasks.slice().filter(
             task => task.status === status
         ).map(task =>
             <Task
                 key={task.id}
                 task={task}
+                editStatus={editStatus}
             />
         )
         return (
