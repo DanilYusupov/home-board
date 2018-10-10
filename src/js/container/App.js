@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Board from '../components/Board.jsx'
-import Form from '../components/Form.jsx'
 import { addTask, editStatus, removeTask } from '../actions/TasksActions'
 
 class App extends Component {
@@ -14,19 +13,14 @@ class App extends Component {
             removeTask
         } = this.props
         return (
-            <div>
-                <h1>Agile Family Board</h1>
                 <div className="container-fluid">
-                    <Form
-                        addTask={addTask}
-                    />
                     <Board
                         tasks={tasks}
                         editStatus={editStatus}
                         removeTask={removeTask}
+                        addTask={addTask}
                     />
                 </div>
-            </div>
         )
     }
 }
