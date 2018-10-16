@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Task from './Task.jsx'
-import {Modal, ModalHeader, ModalBody} from 'reactstrap'
 import Form from './Form'
 
 class Board extends React.Component {
 
-    constructor(props, context) {
-        super(props, context)
+    constructor(props) {
+        super(props)
         this.toggle = this.toggle.bind(this)
         this.state = {
             show: false
@@ -68,12 +67,7 @@ class Board extends React.Component {
                     {this.renderTemplate('DONE')}
                 </div>
                 <div>
-                    <Modal isOpen={this.state.show} toggle={this.toggle}>
-                        <ModalHeader toggle={this.toggle}>Task Creation</ModalHeader>
-                        <ModalBody>
-                            <Form addTask={addTask}/>
-                        </ModalBody>
-                    </Modal>
+                    <Form addTask={addTask} toggle={this.toggle} show={this.state.show}/>
                 </div>
             </div>
         )
