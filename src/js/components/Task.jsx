@@ -1,6 +1,15 @@
 import React from 'react'
+import TaskInfo from './TaskInfo.jsx'
 
 class Task extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.toggle = this.toggle.bind(this)
+        this.state = {
+            show: false
+        }
+    }
 
     renderButton(task, button) {
         const { editStatus } = this.props
@@ -12,13 +21,19 @@ class Task extends React.Component {
         }
     }
 
+    toggle() {
+        this.setState({
+            show: !this.state.show
+        })
+    }
+
     render() {
         const {
             task,
             removeTask,
         } = this.props
         return (
-            <div className="card mt-1">
+            <div className="card mt-1" onClick={this.toggle}>
                 <div className="m-1">
                     <button type="button" className="close" onClick={() => removeTask(task.id)}>
                         <span aria-hidden="true">&times;</span>
@@ -33,6 +48,7 @@ class Task extends React.Component {
                         {this.renderButton(task, { status: 'DONE', style: 'mx-1 btn btn-sm btn-outline-success' })}
                     </div>
                 </div>
+                <TaskInfo task={task} toggle={this.toggle} show={this.state.show}/>
             </div>
         )
     }
